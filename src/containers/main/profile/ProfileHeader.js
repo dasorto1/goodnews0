@@ -16,13 +16,13 @@ export default function ProfileHeader() {
         <View style={Styles.container3}>
           <TouchableOpacity>
             <Text style={Styles.numberContainer}>10</Text>
-            <Text style={Styles.text}>Posts</Text>
+            <Text style={Styles.text}>News Posts</Text>
           </TouchableOpacity>
         </View>
         <View style={Styles.container3}>
           <TouchableOpacity>
             <Text style={Styles.numberContainer}>160</Text>
-            <Text style={Styles.text}>Followers</Text>
+            <Text style={Styles.text}>Subscribers</Text>
           </TouchableOpacity>
         </View>
         <View style={Styles.container3}>

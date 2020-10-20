@@ -29,9 +29,9 @@ export default function profileScreen() {
           <ProfileHeader />
           <UserBio />
           <EditProfileButton />
-          <ConstantStories />
+          
           <LineSeperator />
-          <GridIcon />
+          
           <ProfileGrid />
         </>
       )}
