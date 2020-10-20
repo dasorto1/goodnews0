@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Image, View, StyleSheet} from 'react-native';
+import {TouchableOpacity, Image, View, StyleSheet, Text} from 'react-native';
 import images from 'res/images';
 
 function tapToLike(likeIcon) {
@@ -24,21 +24,14 @@ export default function PostActions() {
     <View style={Styles.container}>
       <View style={{flexDirection: 'row', justifyContent: 'flex-start'}}>
         <TouchableOpacity onPress={() => setLikeIcon(likeIcon + 1)}>
-          <Image source={tapToLike(likeIcon)} style={Styles.actionIcons} />
+          <Text style={{color: '#ffffff'}}>Like</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => console.log('Pressed Comment')}>
-          <Image source={images.comment} style={Styles.actionIcons} />
+        <Text style={{color: '#ffffff', paddingLeft: 20}}>Comment</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => console.log('Pressed Direct Message')}>
-          <Image source={images.direct_message} style={Styles.actionIcons} />
-        </TouchableOpacity>
+        
       </View>
-      <TouchableOpacity onPress={() => setBookmarkIcon(bookmarkIcon + 1)}>
-        <Image
-          source={tapToBookmark(bookmarkIcon)}
-          style={Styles.actionIcons}
-        />
-      </TouchableOpacity>
+      
     </View>
   );
 }
