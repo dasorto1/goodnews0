@@ -17,7 +17,7 @@ import images from 'res/images';
 import colors from './res/colors';
 
 StatusBar.setBarStyle('light-content');
-
+//login screen here edited 
 export default function AppNavigator() {
   const [validate, setValidate] = React.useState(false); //giriş yapılınca geri geri gelmeyi deaktif etmek için kullandık
   function LoginScreen() {
