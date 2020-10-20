@@ -70,9 +70,7 @@ export default function homeScreen({navigation}) {
     <FlatList
       style={{backgroundColor: colors.background}}
       data={data}
-      ListHeaderComponent={() => (
-        <StoryContainer stories={stories} storyOnPress={storyOnPress} />
-      )}
+      
       renderItem={({item, index}) => (
         /*<View style={{flex: 1, alignItems: 'center'}}>
           <Image

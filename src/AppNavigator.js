@@ -26,13 +26,13 @@ export default function AppNavigator() {
     };
     return (
       <View style={Styles.container}>
-        <View style={Styles.logoContainer}>
-          <Image source={images.logo} style={{height: 70, width: 200}} />
+        <View >
+        <Text style={Styles.title}>GoodNews</Text>
         </View>
         <View style={Styles.userNameContainer}>
           <TextInput
             style={Styles.userNameInput}
-            placeholder="Phone number, username or email"
+            placeholder="Username or Email"
             placeholderTextColor={colors.textFaded2}
           />
         </View>
@@ -71,18 +71,7 @@ export default function AppNavigator() {
               backgroundColor: '#262626',
             }}></View>
         </View>
-        <View
-          style={{
-            marginTop: 40,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <Image source={images.facebookLogo} style={{width: 20, height: 20}} />
-          <TouchableOpacity style={{alignItems: 'center', marginStart: 10}}>
-            <Text style={{color: '#008bef'}}>Log In With Facebook</Text>
-          </TouchableOpacity>
-        </View>
+        
         <View style={{flexDirection: 'row', marginTop: 50}}>
           <View
             style={{
@@ -128,7 +117,7 @@ const Styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#191970',
   },
   logoContainer: {
     alignItems: 'center',
@@ -148,6 +137,15 @@ const Styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
   },
+  title:{
+    color: '#969696',
+    fontSize: 50,
+    fontWeight: "bold",
+    justifyContent: 'center',
+    alignItems: 'stretch'
+  },
+
+
   userNameInput: {
     marginStart: 10,
     color: 'white',

@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  Text,
   StatusBar,
 } from 'react-native';
 import palette from 'res/palette';
@@ -29,53 +30,31 @@ export default function () {
             backgroundColor: colors.bottomBackGround,
             shadowColor: colors.seperatorLineColor,
           },
-          headerLeft: () => (
-            <View style={Styles.headerLeftContainer}>
-              <TouchableOpacity
-                onPress={() => navigation.navigate('StoryCameraScreen')}>
-                <Image
-                  source={images.photo_camera}
-                  style={Styles.headerLeftImage}
-                />
-              </TouchableOpacity>
-            </View>
-          ),
-          headerRight: () => (
-            <View>
-              <TouchableOpacity
-                style={Styles.headerRightContainer}
-                onPress={() => navigation.navigate('DirectMessageScreen')}>
-                <Image
-                  source={images.direct_message}
-                  style={Styles.headerRightImage}
-                />
-              </TouchableOpacity>
-            </View>
-          ),
+          
           headerTitle: (
+           
             <TouchableOpacity
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-              <Image
-                source={images.logo}
-                style={{width: 110, resizeMode: 'contain'}}
-              />
+               <Text style={Styles.heading}> GoodNews</Text>
             </TouchableOpacity>
           ),
           headerTitleStyle: {alignSelf: 'center'},
         })}
       />
-      <Stack.Screen name="Story" component={StoryScreen} />
-      <Stack.Screen
-        name="StoryCamera"
-        component={StoryCamera}
-        options={{gestureDirection: 'horizontal-inverted'}} //for left to right transition
-      />
+     
     </Stack.Navigator>
   );
 }
 
 const Styles = StyleSheet.create({
   headerLeftContainer: palette.header.headerLeftContainer,
+  heading: {
+    color: '#ffffff',
+    fontSize: 30,
+    fontWeight: "bold",
+    justifyContent: 'center',
+    alignItems: 'stretch'
+  },
   headerLeftImage: palette.header.headerLeftImage,
   headerRightContainer: palette.header.headerRightContainer,
   headerRightImage: palette.header.headerRightImage,
