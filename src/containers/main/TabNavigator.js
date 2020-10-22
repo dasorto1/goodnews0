@@ -27,9 +27,9 @@ export default function TabNavigator({NavigateToStoryCamera}) {
        >
         <Tab.Screen name="Home" component={homeNavigator} />
         <Tab.Screen name="Search" component={searchNavigator} />
-        <Tab.Screen name="AddPost" component={addPostNavigator} />
+        <Tab.Screen name="Add News" component={addPostNavigator} />
         
-        <Tab.Screen name="Profile" component={profileNavigator} />
+        
       </Tab.Navigator>
     </React.Fragment>
   );
