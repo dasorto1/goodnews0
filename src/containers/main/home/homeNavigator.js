@@ -3,6 +3,9 @@ import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
 import homeScreen from './homeScreen';
 import StoryScreen from './story/StoryScreen';
 import StoryCamera from './StoryCamera/StoryCamera';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import addPostNavigator from '../addPost/addPostNavigator';
+
 import {
   View,
   StyleSheet,
@@ -16,6 +19,18 @@ import images from 'res/images';
 import colors from '../../../res/colors';
 import DirectMessageScreen from './DirectMessage/DirectMessageScreen';
 
+const Tab = createMaterialTopTabNavigator();
+
+function HomeScreenTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Good News" component={homeScreen} />
+      <Tab.Screen name="Mixed News" component={homeScreen} />
+      <Tab.Screen name="Bad News" component={homeScreen} />
+    </Tab.Navigator>
+  );
+}
+
 export default function () {
   const Stack = createStackNavigator();
   StatusBar.setBarStyle('light-content');
@@ -23,7 +38,7 @@ export default function () {
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
-        component={homeScreen}
+        component={HomeScreenTabs}
         options={({navigation}) => ({
           title: '',
           headerStyle: {
