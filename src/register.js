@@ -1,5 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
+import React, {Component} from 'react';
 import {
   View,
   Text,
@@ -11,30 +11,34 @@ import {
 } from 'react-native';
 import palette from 'res/palette';
 import TabNavigator from './containers/main/TabNavigator';
-import MainNavigator from './containers/main/MainNavigator';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import images from 'res/images';
 import colors from './res/colors';
-import register from './register';
-import Global from './Global';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-StatusBar.setBarStyle('light-content');
-//login screen here edited 
-export default function AppNavigator() {
-  const [validate, setValidate] = React.useState(false); //giriş yapılınca geri geri gelmeyi deaktif etmek için kullandık
-  function LoginScreen({navigation}) {
-    const _signInAsync = async () => {
-      setValidate(true);
+export default class register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
     };
+  }
+
+  render() {
+    
     return (
-      <View style={Styles.container}>
+        <View style={Styles.container}>
         <View >
         <Text style={Styles.title}>GoodNews</Text>
         </View>
         <View style={Styles.userNameContainer}>
           <TextInput
             style={Styles.userNameInput}
-            placeholder="Username or Email"
+            placeholder="Username"
+            placeholderTextColor={colors.textFaded2}
+          />
+        </View>
+        <View style={Styles.userNameContainer}>
+          <TextInput
+            style={Styles.userNameInput}
+            placeholder="Email"
             placeholderTextColor={colors.textFaded2}
           />
         </View>
@@ -46,13 +50,8 @@ export default function AppNavigator() {
             placeholderTextColor={colors.textFaded2}
           />
         </View>
-        <View style={Styles.forgotPasswordContainer}>
-          <TouchableOpacity>
-            <Text style={Styles.forgotPasswordText}>Forgot password?</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity style={Styles.loginContainer} onPress={_signInAsync}>
-          <Text style={Styles.loginText}>Log In</Text>
+        <TouchableOpacity style={Styles.loginContainer}>
+          <Text style={Styles.loginText}>Register</Text>
         </TouchableOpacity>
         <View
           style={{
@@ -82,46 +81,11 @@ export default function AppNavigator() {
               height: 1,
             }}></View>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            marginTop: 20,
-          }}>
-          <Text style={{color: '#969696'}}>Don't have an account ?</Text>
-          <TouchableOpacity>
-             {/* <Text style={{color: '#008bef'}}> Sign Up.</Text>  */}
-             <Button title= 'SignUp' color= '#008bef' onPress= {() => navigation.navigate('register')}/>  
-          </TouchableOpacity>
-        </View>
+        
       </View>
     );
   }
-  const Stack = createStackNavigator();
-  return validate ? (
-    //<Global.Provider value={[]}>
-    <MainNavigator /> 
-    //</Global.Provider>
-    
-  ) : (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{
-          headerStyle: {backgroundColor: '#000'},
-          headerTintColor: '#fff',
-          headerTransparent: true,
-          title: '',
-        }}
-      />
-      <Stack.Screen 
-      name="register" 
-      component={register} />
-    </Stack.Navigator>
-  );
 }
-
 const Styles = StyleSheet.create({
   container: {
     flex: 1,

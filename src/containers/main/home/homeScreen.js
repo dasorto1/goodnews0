@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {FlatList, View} from 'react-native';
 import Post from './post/Post';
 import colors from '../../../res/colors';
@@ -6,6 +6,7 @@ import {Text} from 'react-native';
 import {Image} from 'react-native';
 import images from 'res/images';
 import StoryContainer from './story/StoryContainer';
+import Global from '../../../Global';
 
 export default function homeScreen({navigation}) {
   const data = [

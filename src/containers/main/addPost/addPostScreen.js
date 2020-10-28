@@ -7,5 +7,5 @@ export default function addPostScreen() {
     <View style={palette.container.center}>
       <Text style={palette.text}>Add Post</Text>
     </View>
-  );
+  );screen
 }
