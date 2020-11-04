@@ -1,5 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import React, {Component} from 'react';
+import React, {Component, useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -8,21 +8,37 @@ import {
   StyleSheet,
   Image,
   StatusBar,
+  Platform
 } from 'react-native';
 import palette from 'res/palette';
 import TabNavigator from './containers/main/TabNavigator';
 import colors from './res/colors';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { AuthContext } from './AuthProvider';
 
-export default class register extends Component {
+
+  // const [Username, setUsername] = useState();
+  // const [email, setEmail] = useState();
+  // const [password, setPassword] = useState();
+  // const [confirmPassword, setConfirmPassword] = useState();
+
+  // const {signup} = useContext(AuthContext); 
+
+export default class register extends Component { 
+  static contextType = AuthContext;
+  
   constructor(props) {
+    
     super(props);
     this.state = {
     };
   }
-
+  
+  
   render() {
-    
+    const me = this;
+    console.log(me.context)
+
     return (
         <View style={Styles.container}>
         <View >
@@ -40,6 +56,7 @@ export default class register extends Component {
             style={Styles.userNameInput}
             placeholder="Email"
             placeholderTextColor={colors.textFaded2}
+            onChangeText={(userEmail) => this.setState({email: userEmail})}
           />
         </View>
         <View style={Styles.passwordContainer}>
@@ -48,9 +65,19 @@ export default class register extends Component {
             style={Styles.passwordInput}
             placeholder="Password"
             placeholderTextColor={colors.textFaded2}
+            onChangeText={(userPassword) => this.setState({password: userPassword})}
           />
         </View>
-        <TouchableOpacity style={Styles.loginContainer}>
+        <View style={Styles.passwordContainer}>
+          <TextInput
+            secureTextEntry={true}
+            style={Styles.passwordInput}
+            placeholder="Confirm Password"
+            onChangeText={(userPassword) => this.setState({password: userPassword})}
+            placeholderTextColor={colors.textFaded2}
+          />
+        </View>
+        <TouchableOpacity style={Styles.loginContainer} onPress={() => me.context.signup(this.state.email, this.state.password)}>
           <Text style={Styles.loginText}>Register</Text>
         </TouchableOpacity>
         <View

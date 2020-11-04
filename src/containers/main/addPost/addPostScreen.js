@@ -1,17 +1,40 @@
 import React, {useState} from 'react';
 import {View, Text, Button, TextInput, StyleSheet, Alert} from 'react-native';
 import palette from 'res/palette';
+import db from '../../../firebase';
+import firestore from '@react-native-firebase/firestore';
+
+
 
 export default function addPostScreen() { 
  
- const [title, setTitle] = useState('')
- const [content, setContent] = useState('')
- const onTitleChange = (event) => setTitle(event.target.value)
- const onContentChange = (event) => setContent(event.target.value)
+ 
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
+  
+  const onTitleChange = (event) => setTitle(event.target.value)
+  const onContentChange = (event) => setContent(event.target.value)
+ 
+  const onCreatePost = () => {
+    firestore()
+    .collection('posts')
+    .add({
+     title: title,
+      content: content
+    })
+    .then(() => {
+      console.log('Post added!');
+    });
+    
+    // let postRef = db.collection('posts')
 
- const onCreatePost = () => {
-   console.log('create post')
- }
+    // let payload = {title, content}
+
+    // postRef.add(payload)
+    // .then(function(doc){
+    //     console.log("Document successfully written", doc.id);
+    // })
+  }
 
   return (
     <View style={{ flex: 1, marginTop: 60 }}>
