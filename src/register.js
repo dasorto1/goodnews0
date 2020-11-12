@@ -56,7 +56,7 @@ export default class register extends Component {
             style={Styles.userNameInput}
             placeholder="Email"
             placeholderTextColor={colors.textFaded2}
-            onChangeText={(userEmail) => this.setState({email: userEmail})}
+            onChangeText={(email) => this.setState({email: email})}
           />
         </View>
         <View style={Styles.passwordContainer}>
@@ -89,9 +89,7 @@ export default class register extends Component {
             marginTop: 30,
           }}>
           <View style={{flex: 1, height: 1, backgroundColor: '#262626'}}></View>
-          <Text style={{marginLeft: 40, marginRight: 40, color: '#969696'}}>
-            OR
-          </Text>
+          
           <View
             style={{
               flex: 1,

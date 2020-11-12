@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import profileScreen from './profileScreen';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, Button} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import colors from 'res/colors';
 import images from 'res/images';
@@ -12,11 +12,19 @@ export default function profileNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Profile"
-        component={profileScreen}
-        options={{
-          headerTitle: (
-            <TouchableOpacity
+      
+        name="LogOut"
+         component={profileScreen}
+         options={{
+          headerStyle: {backgroundColor: '#000'},
+          headerTintColor: '#fff',
+          headerTransparent: true,
+          title: '',
+        }}
+
+
+
+             /* <TouchableOpacity
               style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
               <Text style={{color: 'white', fontWeight: 'bold', fontSize: 16}}>
                 johndoe
@@ -58,9 +66,9 @@ export default function profileNavigator() {
                   style={{resizeMode: 'contain', width: 20, height: 20}}
                 />
               </View>
-            </TouchableOpacity>
-          ),
-        }}
+            </TouchableOpacity> */
+        // )
+        //  }}
       />
     </Stack.Navigator>
   );

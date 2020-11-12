@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {FlatList, View} from 'react-native';
 import Post from './post/Post';
 import colors from '../../../res/colors';
@@ -7,70 +7,112 @@ import {Image} from 'react-native';
 import images from 'res/images';
 import StoryContainer from './story/StoryContainer';
 import Global from '../../../Global';
+import firestore from '@react-native-firebase/firestore';
+import Sentiment from 'sentiment';
+
+const sentiment = new Sentiment();
 
 export default function homeScreen({navigation}) {
-  const data = [
-    {key: '1'},
-    {key: '2'},
-    {key: '3'},
-    {key: '4'},
-    {key: '5'},
-    {key: '6'},
-    {key: '7'},
-    {key: '8'},
-    {key: '9'},
-    {key: '10'},
-  ];
+  
+  // cosntructor(props){
+  //   super(props);
+  //   this.state = {
+  //     sentimentScore: null,
+  //     generalSentiment: null
+  //   };
+  //   this.findSentiment = this.findSentiment.bind(this);
+  // }
 
-  const storyOnPress = () => navigation.navigate('StoryScreen');
+  // function findSentiment(title){
+  //   const result = sentiment.analyze(title)
+  //   return result.score;
+    
+  //   if (result.score < 0){
+  //     this.setState({
+  //       generalSentiment: 'Negative'
+  //     })
+  //   }else if (result.score > 0){
+  //     this.setState({
+  //       generalSentiment: 'Positive'
+  //     })
+  //   } else {
+  //     this.setState({
+  //       generalSentiment: 'Mixed'
+  //     })
+  //   }
+  //  }
+  // const data = [
+  //   {key: '1'},
+  //   {key: '2'},
+  //   {key: '3'},
+  //   {key: '4'},
+  //   {key: '5'},
+  //   {key: '6'},
+  //   {key: '7'},
+  //   {key: '8'},
+  //   {key: '9'},
+  //   {key: '10'},
+  // ];
 
-  const post = {
-    userName: 'John Doe',
-    placeName: 'Istanbul, Turkey',
-    imgUrl: 'https://picsum.photos/1920/1080',
-    likeCount: 103,
-    commentCount: 21,
-    text:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. A diam maecenas sed enim ut sem viverra.',
-    publishDate: new Date().toDateString(),
-  };
-  const stories = [
-    {
-      key: 'JohnDoe',
-      hasStory: true,
-      src: 'https://picsum.photos/600',
-    },
-    {
-      key: 'CarlaCoe',
-      hasStory: true,
-      src: 'https://picsum.photos/600',
-    },
-    {
-      key: 'DonnaDoe',
-      hasStory: true,
-      src: 'https://picsum.photos/600',
-    },
-    {
-      key: 'JuanDoe',
-      hasStory: true,
-      src: 'https://picsum.photos/600',
-    },
-    {
-      key: 'MartaMoe',
-      hasStory: true,
-      src: 'https://picsum.photos/600',
-    },
-    {
-      key: 'PaulaPoe',
-      hasStory: true,
-      src: 'https://picsum.photos/600',
-    },
-  ];
+  // const storyOnPress = () => navigation.navigate('StoryScreen');
+
+  const [posts, setPosts] = useState('')
+  // const [content, setContent] = useState('')
+
+  useEffect(() => {
+    const list = []
+    firestore()
+    .collection('posts')
+    // Filter results
+    
+    .get()
+    .then(querySnapshot => {
+      /* ... */
+      querySnapshot.forEach((document) => {
+        list.push(document.data()) //call function list 
+      })
+      setPosts(list)
+    })
+  }, []);
+
+  
+  // const stories = [
+  //   {
+  //     key: 'JohnDoe',
+  //     hasStory: true,
+  //     src: 'https://picsum.photos/600',
+  //   },
+  //   {
+  //     key: 'CarlaCoe',
+  //     hasStory: true,
+  //     src: 'https://picsum.photos/600',
+  //   },
+  //   {
+  //     key: 'DonnaDoe',
+  //     hasStory: true,
+  //     src: 'https://picsum.photos/600',
+  //   },
+  //   {
+  //     key: 'JuanDoe',
+  //     hasStory: true,
+  //     src: 'https://picsum.photos/600',
+  //   },
+  //   {
+  //     key: 'MartaMoe',
+  //     hasStory: true,
+  //     src: 'https://picsum.photos/600',
+  //   },
+  //   {
+  //     key: 'PaulaPoe',
+  //     hasStory: true,
+  //     src: 'https://picsum.photos/600',
+  //   },
+  // ];
 
   return (
     <FlatList
       style={{backgroundColor: colors.background}}
-      data={data}
+      data={posts}
       
       renderItem={({item, index}) => (
         /*<View style={{flex: 1, alignItems: 'center'}}>
@@ -80,7 +122,7 @@ export default function homeScreen({navigation}) {
           />
         </View>
         */
-        <Post post={post} />
+        <Post post={item} />
       )}
     />
   );
