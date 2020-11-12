@@ -11,18 +11,23 @@ import ProfileGrid from './ProfileGrid';
 import colors from '../../../res/colors';
 import GridIcon from './gridIcon';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import { AuthContext } from './../../../AuthProvider';
 // const data = [{key: '1'}];
 
 export default function profileScreen() {
+  
   const Stack = createStackNavigator();
+  
   class LogoutScreen extends Component {
+    static contextType = AuthContext;
+    
     render(){
+      const me = this;
       return(
         <View><Button 
         style={Styles.logoutButton}
         title="Log Out"
-        onPress={() => Alert.alert('Simple Button pressed')}
+        onPress={() => me.context.logout()}
       /></View>
       );
     }
@@ -30,6 +35,8 @@ export default function profileScreen() {
   
   
   }
+
+  
   return (
     <Stack.Navigator>
       <Stack.Screen

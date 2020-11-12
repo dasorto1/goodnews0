@@ -18,13 +18,14 @@ import colors from './res/colors';
 import register from './register';
 import Global from './Global';
 import { AuthContext } from './AuthProvider';
-
+import auth from '@react-native-firebase/auth';
 
 StatusBar.setBarStyle('light-content');
 //login screen here edited 
 
 
 export default function AppNavigator() {
+  
   const [validate, setValidate] = React.useState(false); //giriş yapılınca geri geri gelmeyi deaktif etmek için kullandık
   const Stack = createStackNavigator();
   
@@ -41,6 +42,7 @@ export default function AppNavigator() {
     this.state = {
     };
   }
+  
   render() {
     const me = this;
     console.log("Here are the props")
@@ -56,7 +58,14 @@ export default function AppNavigator() {
             style={Styles.userNameInput}
             placeholder="Email"
             placeholderTextColor={colors.textFaded2}
-            onTextChange={function(email){me.setState({email: email})}}
+            onChangeText={function(email){
+              
+              me.setState({email: email});
+              console.log(email, "test2");
+            }
+            
+          }
+            
             // onChangeText={(userEmail) => this.setState({email: userEmail})}
           />
         </View>
@@ -66,7 +75,12 @@ export default function AppNavigator() {
             style={Styles.passwordInput}
             placeholder="Password"
             placeholderTextColor={colors.textFaded2}
-            onTextChange={function(password){me.setState({password: password})}}
+            onChangeText={function(password){
+             
+              me.setState({password: password});
+              console.log(password, "test3");
+            }
+          }
           />
         </View>
         <View style={Styles.forgotPasswordContainer}>

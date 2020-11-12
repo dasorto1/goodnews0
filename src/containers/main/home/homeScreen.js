@@ -111,19 +111,20 @@ export default function homeScreen({navigation}) {
 
   return (
     <FlatList
-      style={{backgroundColor: colors.background}}
-      data={posts}
-      
-      renderItem={({item, index}) => (
-        /*<View style={{flex: 1, alignItems: 'center'}}>
-          <Image
-            source={images.harun}
-            style={{height: 512, width: 512, resizeMode: 'contain'}}
-          />
-        </View>
-        */
-        <Post post={item} />
-      )}
-    />
-  );
+    style={{backgroundColor: colors.background}}
+    data={posts}
+    
+    renderItem={({item, index}) => (
+      /*<View style={{flex: 1, alignItems: 'center'}}>
+        <Image
+          source={images.harun}
+          style={{height: 512, width: 512, resizeMode: 'contain'}}
+        />
+      </View>
+      */
+      <Post post={item} />
+    )}
+    keyExtractor={(item, index) => index.toString()}
+  />
+);
 }

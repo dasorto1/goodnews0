@@ -2,7 +2,16 @@ import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import { FireAuth } from './signupfunction';
 import {AppNavigator} from './AppNavigator'
-
+import {
+  View,
+  Text,
+  Button,
+  TextInput,
+  StyleSheet,
+  Image,
+  StatusBar,
+  Alert
+} from 'react-native';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
@@ -15,12 +24,14 @@ export const AuthProvider = ({children}) => {
         setUser,
         login: async (email, password) => {
           try {
-            console.log(email)
-            await auth().signInWithEmailAndPassword(email, password);
-            
-            // _signinAsync
+            console.log(email, password, "test")
+            let response = await auth().signInWithEmailAndPassword(email, password)
+            console.log(email, password, "test")
+            if (response && response.user) {
+              Alert.alert("Success", "Authenticated successfully")
+            }
           } catch (e) {
-            console.log(e);
+            console.error(e.message)
           }
         },
         // googleLogin: async () => {
