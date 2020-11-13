@@ -21,8 +21,8 @@ export default function addPostScreen() {
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
   
-  const onTitleChange = (event) => setTitle(event.target.value)
-  const onContentChange = (event) => setContent(event.target.value)
+  const onTitleChange = (title) => setTitle(title)
+  const onContentChange = (content) => setContent(content)
  
  
   const onCreatePost = () => {
@@ -103,7 +103,7 @@ export default function addPostScreen() {
       'Photo uploaded!',
       'Your photo has been uploaded to Firebase Cloud Storage!'
     );
-    setImage(null);
+     setImage(null);
   };
 
 
@@ -133,13 +133,13 @@ export default function addPostScreen() {
         placeholder='Enter title of the article'
         value={title}
         style={{ margin: 20 }}
-        onChange={onTitleChange}
+        onChangeText={onTitleChange}
       
       />
       <TextInput
         placeholder='Enter description'
         style={{ margin: 20 }}
-        onChange={onContentChange}
+        onChangeText={onContentChange}
         value={content}
       
       />
