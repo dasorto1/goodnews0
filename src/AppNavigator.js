@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Image,
   StatusBar,
+  Alert
 } from 'react-native';
 import palette from 'res/palette';
 import TabNavigator from './containers/main/TabNavigator';
@@ -83,11 +84,11 @@ export default function AppNavigator() {
           }
           />
         </View>
-        <View style={Styles.forgotPasswordContainer}>
+        {/* <View style={Styles.forgotPasswordContainer}>
           <TouchableOpacity>
             <Text style={Styles.forgotPasswordText}>Forgot password?</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
         <TouchableOpacity style={Styles.loginContainer} onPress={() => me.context.login(me.state.email, me.state.password)}>
           <Text style={Styles.loginText}>Log In</Text>
         </TouchableOpacity>

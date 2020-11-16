@@ -31,6 +31,7 @@ export const AuthProvider = ({children}) => {
               Alert.alert("Success", "Authenticated successfully")
             }
           } catch (e) {
+            Alert.alert("Incorrect username or password, please try again")
             console.error(e.message)
           }
         },
@@ -78,6 +79,7 @@ export const AuthProvider = ({children}) => {
             await auth().createUserWithEmailAndPassword(email, password);
             
           } catch (e) {
+            Alert.alert("Incorrect username, email, or password, please try again")
             console.log(e);
           }
         },

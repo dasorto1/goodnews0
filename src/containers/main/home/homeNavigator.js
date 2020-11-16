@@ -1,6 +1,8 @@
 import React from 'react';
 import {createStackNavigator, TransitionSpecs} from '@react-navigation/stack';
 import homeScreen from './homeScreen';
+import badNews from './badNews';
+import mixedNews from './mixedNews';
 import StoryScreen from './story/StoryScreen';
 import StoryCamera from './StoryCamera/StoryCamera';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -24,9 +26,10 @@ const Tab = createMaterialTopTabNavigator();
 function HomeScreenTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Good News" component={homeScreen} />
-      <Tab.Screen name="Mixed News" component={homeScreen} />
-      <Tab.Screen name="Bad News" component={homeScreen} />
+      <Tab.Screen name="Good News" component={homeScreen}  />
+      <Tab.Screen name="Mixed News" component={homeScreen}  />
+      {/* cmponent mixed news and bad news 2 last */}
+      <Tab.Screen name="Bad News" component={homeScreen}  />
     </Tab.Navigator>
   );
 }

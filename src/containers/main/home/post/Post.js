@@ -10,12 +10,12 @@ import PostPublishDate from './PostPublishDate';
 export default function Post({post}) {
   return (
     <React.Fragment>
-      <PostHeader post={post} />
+      {/* <PostHeader post={post} /> */}
       <PostImage post={post} />
-      <PostActions />
-      <PostLikes post={post} />
+      {/* <PostActions />
+      <PostLikes post={post} /> */}
       <PostText post={post} />
-      <PostComments post={post} />
+      {/* <PostComments post={post} /> */}
       <PostPublishDate post={post} />
     </React.Fragment>
   );

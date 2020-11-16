@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Button, TextInput, StyleSheet, Alert, Platform, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Button, TextInput, StyleSheet, Platform, Image, TouchableOpacity, KeyboardAvoidingView, Alert} from 'react-native';
 import palette from 'res/palette';
 import db from '../../../firebase';
 import firestore from '@react-native-firebase/firestore';
@@ -18,6 +18,8 @@ export default function addPostScreen() {
   const [content, setContent] = useState('')
 
   const [image, setImage] = useState(null);
+  const [profileImageUrl, setprofileImageUrl] = useState('')
+
   const [uploading, setUploading] = useState(false);
   const [transferred, setTransferred] = useState(0);
   
@@ -25,30 +27,7 @@ export default function addPostScreen() {
   const onContentChange = (content) => setContent(content)
  
  
-  const onCreatePost = () => {
-    firestore()
-    .collection('posts')
-    .add({
-      title: title,
-      content: content,
-      image: image,
-      // image: image,
-      // user: user
-
-    })
-    .then(() => {
-      console.log('Post added!');
-    });
   
-    // let postRef = db.collection('posts')
-
-    // let payload = {title, content}
-
-    // postRef.add(payload)
-    // .then(function(doc){
-    //     console.log("Document successfully written", doc.id);
-    // })
-  }
   async function getPathForFirebaseStorage (uri) {
     if (Platform.OS==="ios") return uri
     const stat = await RNFetchBlob.fs.stat(uri)
@@ -79,6 +58,7 @@ export default function addPostScreen() {
     });
   };
   const uploadImage = async () => {
+    
     const { uri } = image;
     const filename = uri.substring(uri.lastIndexOf('/') + 1);
     const uploadUri = await getPathForFirebaseStorage(uri)
@@ -101,14 +81,60 @@ export default function addPostScreen() {
     setUploading(false);
     Alert.alert(
       'Photo uploaded!',
-      'Your photo has been uploaded to Firebase Cloud Storage!'
+      'Your photo has been uploaded to GoodNews!'
     );
+    let imageRef = storage().ref('/' + filename);
+    imageRef
+    .getDownloadURL()
+    .then((url) => {
+      //from url you can fetched the uploaded image easily
+      // this.setState({profileImageUrl: uploadedUrl});
+      setprofileImageUrl(url);
+    })
+    .catch((e) => console.log('getting downloadURL of image error => ', e));
      setImage(null);
   };
+  
 
+  const onCreatePost = () => {
+    firestore()
+    .collection('posts')
+    .add({
+      title: title,
+      content: content,
+      image: profileImageUrl
+      // image: image,
+      // user: user
+
+    })
+    .then(() => {
+      console.log('Post added!');
+    });
+    setprofileImageUrl('');
+    // let postRef = db.collection('posts')
+
+    // let payload = {title, content}
+
+    // postRef.add(payload)
+    // .then(function(doc){
+    //     console.log("Document successfully written", doc.id);
+    // })
+  }
+
+  // const uploadImage = async (uri, name, firebasePath) => {
+  //   const imageRef = storage().ref(`${firebasePath}/${name}`)
+  //   await imageRef.putFile(uri, { contentType: 'image/jpg'}).catch((error) => { throw error })
+  //   const url = await imageRef.getDownloadURL().catch((error) => { throw error });
+  //   return url
+  // }
+  
+  // const uploadedUrl = await uploadImage('uri/of/local/image', 'imageName.jpg', 'path/to/remote/folder');
+  
+  // const {imageName} = this.state;
+ 
 
   return (
-    <View style={{ flex: 1, marginTop: 60 }}>
+    <View style={{ flex: 1, flexDirection: 'column',justifyContent:'flex-start' }}>
     <TouchableOpacity style={styles.selectButton} onPress={selectImage}>
         <Text style={styles.buttonText}>Pick an image</Text>
       </TouchableOpacity>
@@ -127,22 +153,29 @@ export default function addPostScreen() {
         )}
       </View>
 
-    <View style={{ marginTop: 80, alignItems: 'center' }}>
+    <View style={{flex:1, alignItems: 'center', flexDirection: 'column',justifyContent:'flex-start'}}>
       <Text style={styles.detailsText}> News Details</Text>
-      <TextInput
+      <TextInput style={styles.newsTitle}
         placeholder='Enter title of the article'
         value={title}
         style={{ margin: 20 }}
         onChangeText={onTitleChange}
+        maxLength = {100}
       
       />
-      <TextInput
+      {/* <KeyboardAvoidingView
+      style={styles.container}
+      behavior="padding"
+    > */}
+      <TextInput style={styles.description}
         placeholder='Enter description'
         style={{ margin: 20 }}
         onChangeText={onContentChange}
         value={content}
+        maxLength = {120}
       
       />
+      {/* </KeyboardAvoidingView> */}
        <Button
         title="Add news"
         color="#f194ff"
@@ -162,6 +195,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold"
   },
+  newsTitle:{
+    
+  },
+  description:{
+    
+  },
   selectButton: {
     borderRadius: 5,
     width: 150,
@@ -169,6 +208,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8ac6d1',
     alignItems: 'center',
     justifyContent: 'center'
+    
   },
   uploadButton: {
     borderRadius: 5,
@@ -182,7 +222,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center'
+
   },
   imageContainer: {
     marginTop: 30,

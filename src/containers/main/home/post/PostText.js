@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Vibration} from 'react-native';
 import colors from 'res/colors';
 
 export default function PostText({post}) {
-  console.log(post, "test")
+  // console.log(post, "test")
   return (
     <View
       style={{
@@ -13,7 +13,7 @@ export default function PostText({post}) {
         marginTop: 10,
       }}>
       <Text style={{color: colors.text, fontWeight: 'bold', fontSize: 13}}>
-        {post.userName}
+        {post.title}
       </Text>
       <Text style={{color: colors.text}}>{post.content}</Text>
     </View>
