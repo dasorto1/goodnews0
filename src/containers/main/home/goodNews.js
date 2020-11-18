@@ -12,20 +12,23 @@ import Sentiment from 'sentiment';
 
 const sentiment = new Sentiment();
 
-export default function badNews({navigation}) {
+export default function GoodNews({navigation}) {
   
   const [posts, setPosts] = React.useState([])
   // let oldCount = posts.length;
-  // this.state = {
+    
+    // let oldCount = posts.length;
+  // use.state = {
   //   sentimentScore: null,
   //   generalSentiment:null
   // };
   // this.findSentiment = this.findSentiment.bind(this);
 
-  // this.findSentiment(event){
-  //   const result = sentiment.analyze(event.target.value)
+  // this.findSentiment(content){
+  //   const result = sentiment.analyze(content)
   // }
-  function checksentiment (content) {
+
+  function findSentiment (content) {
     const result = sentiment.analyze(content)
     return result.score
 } 
@@ -41,7 +44,7 @@ export default function badNews({navigation}) {
       /* ... */
       querySnapshot.forEach((document) => {
         
-        if (checksentiment(document.data().content) < 0) {
+        if (findSentiment(document.data().content) > 0) {
          list.push(document.data())
         } //call function list 
       })

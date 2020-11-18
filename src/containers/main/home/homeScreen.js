@@ -14,7 +14,7 @@ const sentiment = new Sentiment();
 
 export default function homeScreen({navigation}) {
   
-  const [posts, setPosts] = React.useState(posts)
+  const [posts, setPosts] = React.useState([])
   // let oldCount = posts.length;
   // this.state = {
   //   sentimentScore: null,
@@ -25,31 +25,49 @@ export default function homeScreen({navigation}) {
   // this.findSentiment(event){
   //   const result = sentiment.analyze(event.target.value)
   // }
+  function update(){
+    const list = []
+    firestore()
+    .collection('posts')
+    // Filter results
+    
+    .get()
+    .then(querySnapshot => {
+      /* ... */
+      querySnapshot.forEach((document) => {
+        list.push(document.data()) //call function list 
+      })
+      setPosts(list)
+      console.log(posts[0])
+    })
+  }
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [listData, setListData] = React.useState(posts);
-
+  
   const onRefresh = React.useCallback(async () => {
+    const newPosts = [...posts];
     setRefreshing(true);
     console.log(posts, posts.length, "test")
-    if (posts.length > 10) {
+    // if (posts.length < 10) {
       // console.log(oldCount, "test2", posts.length)
       try {
-        let response = await fetch(
-         posts
-        );
-        let responseJson = await response.json();
-        console.log(responseJson);
-        setPosts(responseJson.result.concat(posts));
+        update()
+        // let response = await fetch(
+        //  posts
+        // );
+        // let responseJson = await response.json();
+        // console.log(responseJson);
+        // setPosts(responseJson.result.concat(newPosts));
         setRefreshing(false)
       } catch (error) {
         console.error(error);
       }
-    }
-    else{
-      ToastAndroid.show('No more new data available', ToastAndroid.SHORT);
-      setRefreshing(false)
-    }
+    // }
+    // else{
+    //   ToastAndroid.show('No more new data available', ToastAndroid.SHORT);
+    //   setRefreshing(false)
+    // }
   }, [refreshing]);
   
   // cosntructor(props){
@@ -61,8 +79,8 @@ export default function homeScreen({navigation}) {
   //   this.findSentiment = this.findSentiment.bind(this);
   // }
 
-  // function findSentiment(title){
-  //   const result = sentiment.analyze(title)
+  // function findSentiment(content){
+  //   const result = sentiment.analyze(content)
   //   return result.score;
     
   //   if (result.score < 0){
@@ -97,21 +115,9 @@ export default function homeScreen({navigation}) {
   
 
   // const [content, setContent] = useState('')
-
+  
   useEffect(() => {
-    const list = []
-    firestore()
-    .collection('posts')
-    // Filter results
-    
-    .get()
-    .then(querySnapshot => {
-      /* ... */
-      querySnapshot.forEach((document) => {
-        list.push(document.data()) //call function list 
-      })
-      setPosts(list)
-    })
+    update()
   }, []);
 
   

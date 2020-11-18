@@ -59,7 +59,7 @@ export default function addPostScreen() {
   };
   const uploadImage = async () => {
     
-    const { uri } = image;
+    const { uri } = image;//error here
     const filename = uri.substring(uri.lastIndexOf('/') + 1);
     const uploadUri = await getPathForFirebaseStorage(uri)
     setUploading(true);
