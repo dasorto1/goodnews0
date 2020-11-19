@@ -1,33 +1,3 @@
-import React, {useContext, useState, useEffect} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
-import {AuthContext} from './AuthProvider';
-
-import AuthStack from './AuthStack';
-import AppStack from './AppStack';
-
-import Register from './register';
-
-const Routes = () => {
-  const {user, setUser} = useContext(AuthContext);
-  const [initializing, setInitializing] = useState(true);
-
-  const onAuthStateChanged = (user) => {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  };
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  if (initializing) return null;
-
-  return (
-    <Register/>
-  );
-};
-
-
-export default Routes;
+version https://git-lfs.github.com/spec/v1
+oid sha256:be4ed7a0ffbf58cbf387ce06053a7793d2a6d3731a24105ca825e58649aaeee0
+size 814

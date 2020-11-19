@@ -1,13 +1,3 @@
-import AppNavigator from './src/AppNavigator';
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {AuthProvider} from './src/AuthProvider';
-import {FireAuth} from './src/signupfunction';
-
-function App() {
-  return <AuthProvider><NavigationContainer>
-    <FireAuth/></NavigationContainer>
-    </AuthProvider>;
-}
-
-export default App;
+version https://git-lfs.github.com/spec/v1
+oid sha256:6513c4d19c56c123828c6de8c66d0bfb5ae53c1ea6cb44723b39dbfd03539a5a
+size 377

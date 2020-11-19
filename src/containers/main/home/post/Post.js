@@ -1,22 +1,3 @@
-import React from 'react';
-import PostHeader from './PostHeader';
-import PostImage from './PostImage';
-import PostActions from './PostActions';
-import PostLikes from './PostLikes';
-import PostText from './PostText';
-import PostComments from './PostComments';
-import PostPublishDate from './PostPublishDate';
-
-export default function Post({post}) {
-  return (
-    <React.Fragment>
-      {/* <PostHeader post={post} /> */}
-      <PostImage post={post} />
-      {/* <PostActions />
-      <PostLikes post={post} /> */}
-      <PostText post={post} />
-      {/* <PostComments post={post} /> */}
-      <PostPublishDate post={post} />
-    </React.Fragment>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:2b6c8bc57913de77ed008d1ba155debb17b434e0db9198e1f8f27840ae153340
+size 656

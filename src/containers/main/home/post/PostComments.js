@@ -1,15 +1,3 @@
-import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
-import colors from 'res/colors';
-
-export default function PostComments({post}) {
-  return (
-    <TouchableOpacity
-      style={{marginTop: 5, marginStart: 15}}
-      onPress={() => console.log('Pressed Post Comments')}>
-      <Text style={{color: colors.textFaded2}}>
-        View all {post.commentCount} comments
-      </Text>
-    </TouchableOpacity>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5adb352824a428d932695a54e9f8777566004053ed58d6f0312c5b9feb858765
+size 439

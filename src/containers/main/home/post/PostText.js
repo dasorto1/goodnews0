@@ -1,21 +1,3 @@
-import React from 'react';
-import {Text, View, StyleSheet, Vibration} from 'react-native';
-import colors from 'res/colors';
-
-export default function PostText({post}) {
-  // console.log(post, "test")
-  return (
-    <View
-      style={{
-        marginStart: 15,
-        marginEnd: 15,
-        flexDirection: 'column',
-        marginTop: 10,
-      }}>
-      <Text style={{color: colors.text, fontWeight: 'bold', fontSize: 13}}>
-        {post.title}
-      </Text>
-      <Text style={{color: colors.text}}>{post.content}</Text>
-    </View>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:fcd2dc6f96a7105f553df9e95a6be2d7eae6e9fd5d96530d532720483e9f3b33
+size 551
