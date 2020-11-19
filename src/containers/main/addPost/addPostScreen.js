@@ -8,6 +8,8 @@ import storage from '@react-native-firebase/storage';
 import * as Progress from 'react-native-progress';
 import RNFetchBlob from 'rn-fetch-blob'
 import auth from '@react-native-firebase/auth';
+import InputScrollView from 'react-native-input-scroll-view';
+
 
 import { AuthContext } from './../../../AuthProvider';
 
@@ -134,6 +136,7 @@ export default function addPostScreen() {
  
 
   return (
+    <InputScrollView>
     <View style={{ flex: 1, flexDirection: 'column',justifyContent:'flex-start' }}>
     <TouchableOpacity style={styles.selectButton} onPress={selectImage}>
         <Text style={styles.buttonText}>Pick an image</Text>
@@ -167,7 +170,7 @@ export default function addPostScreen() {
       style={styles.container}
       behavior="padding"
     > */}
-      <TextInput style={styles.description}
+      <TextInput style={{flex:1,flexDirection: 'column', margin: 75}}
         placeholder='Enter description'
         style={{ margin: 20 }}
         onChangeText={onContentChange}
@@ -185,7 +188,7 @@ export default function addPostScreen() {
     </View>
 
   </View>
-
+  </InputScrollView>
   );
 }
 
@@ -198,9 +201,7 @@ const styles = StyleSheet.create({
   newsTitle:{
     
   },
-  description:{
-    
-  },
+  
   selectButton: {
     borderRadius: 5,
     width: 150,
