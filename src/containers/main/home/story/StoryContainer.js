@@ -1,30 +1,3 @@
-import React, {version} from 'react';
-import {Image, View, Text, StyleSheet} from 'react-native';
-import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
-import StoryListItem from './StoryListItem';
-import colors from '../../../../res/colors';
-
-export default function StoryContainer({stories, storyOnPress}) {
-  return (
-    <View>
-      <FlatList
-        showsHorizontalScrollIndicator={false}
-        indicatorStyle={'white'}
-        horizontal={true}
-        data={stories}
-        renderItem={({item}) => (
-          <StoryListItem item={item} storyOnPress={storyOnPress} />
-        )}
-        keyExtractor={(item) => item.key}
-      />
-      <View style={Styles.sperator}></View>
-    </View>
-  );
-}
-
-const Styles = StyleSheet.create({
-  sperator: {
-    backgroundColor: colors.seperatorLineColor,
-    height: 0.5,
-  },
-});
+version https://git-lfs.github.com/spec/v1
+oid sha256:3b3042315d7efac9b50f44b85bc0dbb73b17cd869250ea447ab2a734a6bf4bb4
+size 846

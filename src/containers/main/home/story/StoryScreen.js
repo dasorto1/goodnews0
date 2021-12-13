@@ -1,16 +1,3 @@
-import React from 'react';
-import {View, Image} from 'react-native';
-
-export default function StoryScreen() {
-  return (
-    <View style={{backgroundColor: 'black', flex: 1, justifyContent: 'center'}}>
-      <Image
-        source={{uri: 'https://picsum.photos/600'}}
-        style={{
-          height: 512,
-          resizeMode: 'contain',
-        }}
-      />
-    </View>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:297e631754f101c05f461c152d3db310e7ebd5c7be72f01f699aa2b92f742fa0
+size 379

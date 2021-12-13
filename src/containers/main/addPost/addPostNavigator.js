@@ -1,24 +1,3 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import addPostScreen from './addPostScreen';
-import colors from 'res/colors';
-import {View, Text} from 'react-native';
-
-export default function addPostNavigator() {
-  const Stack = createStackNavigator();
-
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Add Post"
-        component={addPostScreen}
-        options={{
-          headerStyle: {
-            backgroundColor: colors.bottomBackGround,
-            shadowColor: colors.seperatorLineColor,
-          },
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a7fd7dfa941a0312a9b8da682ab60069604bca90dff14ec1cdad50d7513fcf3d
+size 619

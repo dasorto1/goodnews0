@@ -1,19 +1,3 @@
-import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-import colors from 'res/colors';
-
-export default function PostPublishDate({post}) {
-  return (
-    <TouchableOpacity onPress={() => console.log('Pressed Post Publish Date')}>
-      <Text
-        style={{
-          color: colors.textFaded2,
-          marginTop: 5,
-          marginStart: 15,
-          fontSize: 12,
-        }}>
-        {post.publishDate}
-      </Text>
-    </TouchableOpacity>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:19a6bbbdce6f8556ac3bcf1f18c66e416805ec5009fae094d6a758ed1d4fff1d
+size 479

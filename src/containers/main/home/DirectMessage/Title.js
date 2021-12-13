@@ -1,13 +1,3 @@
-import React from 'react';
-import {View, Text} from 'react-native';
-
-
-export default function Title() {
-  return (
-    <View style={{marginTop: 10, marginStart: 10}}>
-      <Text style={{color: 'white', fontWeight: 'bold', fontSize: 18}}>
-        Messages
-      </Text>
-    </View>
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5de3aff355edd9b9fb9bb03243f41e2ae9b294c140cf176c04938ce539c4738e
+size 289

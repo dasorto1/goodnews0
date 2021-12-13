@@ -1,35 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
-import auth from '@react-native-firebase/auth';
-import AppNavigator from './AppNavigator';
-import MainNavigator from './containers/main/MainNavigator';
-import {createStackNavigator} from '@react-navigation/stack';
-
-export const FireAuth = () => {
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  if (initializing) return (<Text></Text>);
-
-  if (!user) {
-    return (
-      <AppNavigator/>
-    );
-  }
-
-  return (
-    <MainNavigator/> 
-  );
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:abacbc22baf634e9733d4cc23e0f0347d7aa9da148b88c84d77aa8012ffb990d
+size 1206

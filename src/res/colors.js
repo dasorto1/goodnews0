@@ -1,11 +1,3 @@
-const colors = {
-  background: '#000',
-  bottomBackGround: '#121212',
-  text: 'white',
-  textFaded2: '#999',
-  textInputBackground: '#262626',
-  seperatorLineColor: '#1c1c1c',
-  loginInputBackground: '#121212',
-};
-
-export default colors;
+version https://git-lfs.github.com/spec/v1
+oid sha256:178256079a81259baab5f33374efeeba357e38e756ffd0418f56a1ed3798cd4d
+size 238

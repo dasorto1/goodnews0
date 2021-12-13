@@ -1,18 +1,3 @@
-import React from 'react';
-import {Image, StyleSheet, Dimensions, Text} from 'react-native';
-
-export default function PostImage({post}) {
-  if (post.image == null || typeof post.image == 'undefined'){
-    return <Text style={{color:'white'}}>null image</Text>
-  } 
-  console.log(post.image, "test")
-  return <Image source={{uri: post.image}} style={Styles.postImg} />;
-}
-
-const Styles = StyleSheet.create({
-  postImg: {
-    height: Dimensions.get('screen').height / 3,
-    width: Dimensions.get('screen').width,
-   
-  },
-});
+version https://git-lfs.github.com/spec/v1
+oid sha256:06c521d25222edcfebde748ba5c0c8f710f1913424c8f59989fc38ed2da16c9e
+size 525
